@@ -1,436 +1,267 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人网站</title>
-    <style>
-        :root {
-            --primary-color: #3498db;
-            --secondary-color: #2ecc71;
-            --dark-color: #2c3e50;
-            --light-color: #ecf0f1;
-            --text-color: #333;
-            --section-padding: 60px 0;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            : 1.6;
-            颜色: var(--text-color);
-            背景颜色: var(--light-color);
-        }
-        .容器 {
-            最大宽度: 1200像素;
-            边距: 0 自动;
-            padding: 0 20px;
-        }
-        header {
-            background-color: var(--dark-color);
-            : 白色;
-            填充: 20像素 0;
-            位置: 固定;
-            宽度: 100%;
-            顶部: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        导航 {
-            显示: flex;
-            justify-content: space-between;
-            对齐方式: 居中;
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .nav-links {
-            显示: flex;
-            list-style: none;
-        }
-        .nav-links li {
-            margin-left: 30px;
-        }
-        .导航链接 a {
-            颜色: 白色;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-        .hero {
-            背景: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=现代简约个人网站背景&image_size=landscape_16_9');
-            background-size: cover;
-            background-position: center;
-            颜色: 白色;
-            text-align: center;
-            padding: 200px 0 150px;
-            margin-top: 70px;
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-        .hero p {
-            字体大小: 1.2rem;
-            下边距: 40px;
-            最大宽度: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            颜色: 白色;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #2980b9;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        section {
-            padding: var(--section-padding);
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            color: var(--dark-color);
-        }
-        .about {
-            background-color: white;
-        }
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-        .about-text {
-            flex: 1;
-        }
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        .about-text p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-        .about-image {
-            flex: 1;
-        }
-        .about-image img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .projects {
-            background-color: var(--light-color);
-        }
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .project-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-        .project-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-        .project-content {
-            padding: 20px;
-        }
-        .project-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--dark-color);
-        }
-        .project-content p {
-            margin-bottom: 15px;
-            color: #666;
-        }
-        .project-link {
-            display: inline-block;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-        .project-link:hover {
-            color: #2980b9;
-        }
-        .skills {
-            background-color: white;
-        }
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-        }
-        .skill-card {
-            background-color: var(--light-color);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .skill-card i {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-        .skill-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--dark-color);
-        }
-        .contact {
-            background-color: var(--dark-color);
-            color: white;
-            text-align: center;
-        }
-        .contact .section-title {
-            颜色: 白色;
-        }
-        .contact-info {
-            显示: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-        .contact-item {
-            显示: flex;
-            对齐方式: 居中;
-            gap: 10px;
-        }
-        .contact-item i {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-        }
-        .contact-item a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .contact-item a:hover {
-            color: var(--primary-color);
-        }
-        footer {
-            background-color: #1a252f;
-            color: white;
-            text-align: center;
-            padding: 30px 0;
-        }
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .about-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            .contact-info {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f7f0e4">
+<meta name="description" content="蒋栎斌的作品集入口：三维地图与个人主页。">
+<title>蒋栎斌 · 作品</title>
+<style>
+  :root {
+    /* 配色沿用三维地图那一套暖调，两处视觉语言保持一致 */
+    --paper:      #f7f0e4;   /* 宣纸米白，与地图 theme-color 同值 */
+    --paper-deep: #efe5d4;
+    --card:       #fffdf9;
+    --ink:        #2c2420;   /* 深棕墨 */
+    --ink-soft:   #6f6257;
+    --ink-faint:  #9a8c7f;
+    --line:       #e3d8c7;
+    --red:        #c9422c;   /* 主色，与地图详情面板同源 */
+    --red-deep:   #a8331f;
+    --amber:      #e8a13c;
+    --radius:     16px;
+    --shadow:     0 1px 2px rgba(44, 36, 32, .05), 0 8px 24px -12px rgba(44, 36, 32, .18);
+    --shadow-lift:0 2px 4px rgba(44, 36, 32, .06), 0 18px 40px -16px rgba(44, 36, 32, .28);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { color-scheme: light; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 5vw, 64px) clamp(20px, 5vw, 40px);
+    background-color: var(--paper);
+    /* 极淡的暖色光晕，避免大面积纯色显得平板 */
+    background-image:
+      radial-gradient(60ch 60ch at 12% -10%, rgba(232, 161, 60, .13), transparent 70%),
+      radial-gradient(50ch 50ch at 100% 110%, rgba(201, 66, 44, .10), transparent 72%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { width: 100%; max-width: 1040px; margin: 0 auto; }
+
+  /* ---------- 页头 ---------- */
+  .eyebrow {
+    margin: 0 0 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  h1 {
+    margin: 0 0 10px;
+    font-size: clamp(30px, 5.2vw, 44px);
+    line-height: 1.2;
+    letter-spacing: -.01em;
+    font-weight: 700;
+  }
+
+  .lede {
+    margin: 0 0 clamp(28px, 4.5vw, 44px);
+    max-width: 46ch;
+    color: var(--ink-soft);
+    font-size: clamp(15px, 1.6vw, 17px);
+  }
+
+  /* ---------- 两张卡片 = 两个入口 ---------- */
+  .entries {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, 2.4vw, 26px);
+  }
+
+  .entry {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: var(--shadow);
+    color: inherit;
+    text-decoration: none;              /* 整张卡片就是按钮 */
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  }
+
+  .entry:hover,
+  .entry:focus-visible {
+    transform: translateY(-4px);
+    border-color: rgba(201, 66, 44, .38);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .entry:focus-visible {
+    outline: 3px solid var(--red);
+    outline-offset: 3px;
+  }
+
+  /* 视觉区：地图用真实截图，个人主页用同尺寸的暖色图形块 */
+  .entry__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(150deg, #f3e7d3, #e9d9c1);
+    overflow: hidden;
+  }
+
+  .entry__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+  }
+
+  .entry__media svg { display: block; width: 100%; height: 100%; }
+
+  .entry__body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 20px 20px;
+  }
+
+  .entry__title {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+
+  .entry__desc {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  .entry__cta {
+    margin-top: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--red);
+  }
+
+  .entry__cta svg { transition: transform .22s ease; }
+  .entry:hover .entry__cta svg,
+  .entry:focus-visible .entry__cta svg { transform: translateX(4px); }
+
+  /* ---------- 页脚 ---------- */
+  footer {
+    margin-top: clamp(28px, 4.5vw, 44px);
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    justify-content: space-between;
+    color: var(--ink-faint);
+    font-size: 13px;
+  }
+
+  footer a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--line); }
+  footer a:hover { color: var(--red); border-bottom-color: var(--red); }
+
+  /* ---------- 窄屏：单列 ---------- */
+  @media (max-width: 760px) {
+    .entries { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .entry, .entry__cta svg { transition: none; }
+    .entry:hover, .entry:focus-visible { transform: none; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo">个人网站</div>
-            <ul class="nav-links">
-                <li><a href="#home">首页</a></li>
-                <li><a href="#about">关于我</a></li>
-                <li><a href="#projects">项目</a></li>
-                <li><a href="#skills">技能</a></li>
-                <li><a href="#contact">联系方式</a></li>
-            </ul>
-        </nav>
-    </header>
+<div class="wrap">
 
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>你好，我是 蒋栎斌 </h1>
-            <p>我是一名 本科学生 ，热爱 运动 。欢迎来到我的个人网站，这里展示了我的项目和技能。</p>
-            <a href="#projects" class="btn">查看我的项目</a>
-        </div>
-    </section>
+  <header>
+    <p class="eyebrow">Portfolio</p>
+    <h1>蒋栎斌</h1>
+    <p class="lede">宁波大学。这里是我的两个入口 —— 一个是正在做的三维地图，一个是个人主页。</p>
+  </header>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">关于我</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>个人介绍</h3>
-                    <p>我是一名热情的 宁波大学学子，拥有 1 年的经验。我专注于 教育领域，并且不断学习新的技术和知识。</p>
-                    <p>我喜欢解决复杂的问题，并且善于团队合作。在我的职业生涯中，我参与了多个重要项目，积累了丰富的经验。</p>
-                    <p>除了工作，我还喜欢 乒乓球，这些活动帮助我保持创造力和平衡的生活。</p>
-                </div>
-                <div class="about-image">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20portrait%20of%20a%20developer&image_size=square" alt="个人照片">
-                </div>
-            </div>
-        </div>
-    </section>
+  <main class="entries">
 
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">我的项目</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=web%20development%20project%20screenshot&image_size=landscape_4_3" alt="项目1">
-                    </div>
-                    <div class="project-content">
-                        <h3>项目名称 1</h3>
-                        <p>这是一个 教育研究项目，使用了 trae 开发。该项目 只是个实验品。</p>
-                        <a href="#" class="project-link">查看详情 <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=mobile%20app%20project%20screenshot&image_size=landscape_4_3" alt="项目2">
-                    </div>
-                    <div class="project-content">
-                        <h3>项目名称 2</h3>
-                        <p>这是一个 教育项目，使用了 AI 开发。该项目 依旧是测试品。</p>
-                        <a href="#" class="project-link">查看详情 <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=data%20visualization%20project%20screenshot&image_size=landscape_4_3" alt="项目3">
-                    </div>
-                    <div class="project-content">
-                        <h3>项目名称 3</h3>
-                        <p>这是一个 教育项目，使用了 阿拉丁神灯 开发。该项目 我不知道该写什么但是你可以V我50请我吃肯德基疯狂星期四。</p>
-                        <a href="#" class="project-link">查看详情 <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <a class="entry" href="./map/">
+      <div class="entry__media">
+        <img src="./assets/map-preview.jpg"
+             alt="甬城红迹三维地图的界面预览：浙江省地图上的道路网与红色场馆旗帜"
+             width="1040" height="780" loading="eager" decoding="async">
+      </div>
+      <div class="entry__body">
+        <h2 class="entry__title">甬城红迹 · 三维地图</h2>
+        <p class="entry__desc">浙江省红色场馆的三维悬浮沙盘，省 → 市 → 区县 → 场馆四级下钻，可查看场馆详情与驾车步行路线。</p>
+        <span class="entry__cta">进入地图
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h13M13 6l6 6-6 6"/>
+          </svg>
+        </span>
+      </div>
+    </a>
 
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">我的技能</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fas fa-code"></i>
-                    <h3>千问</h3>
-                    <p>点外卖,KFC疯狂星期四V我50</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-server"></i>
-                    <h3>豆包</h3>
-                    <p>生成高情商文案</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-database"></i>
-                    <h3>皇室战争</h3>
-                    <p>正在冲刺12000杯</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>运动</h3>
-                    <p>有人想找我打乒乓球吗</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <a class="entry" href="./profile/">
+      <div class="entry__media">
+        <!-- 纯几何图形，不用任何真实照片或生成图 -->
+        <svg viewBox="0 0 400 300" role="img" aria-label="个人主页示意图">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f6ead6"/>
+              <stop offset="100%" stop-color="#eddcc2"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#c9422c"/>
+              <stop offset="100%" stop-color="#a8331f"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="300" fill="url(#g1)"/>
+          <circle cx="322" cy="72" r="46" fill="#e8a13c" opacity=".26"/>
+          <circle cx="72" cy="246" r="58" fill="#c9422c" opacity=".12"/>
+          <rect x="104" y="58" width="192" height="184" rx="12" fill="#fffdf9" opacity=".92"/>
+          <circle cx="200" cy="112" r="26" fill="url(#g2)" opacity=".9"/>
+          <path d="M170 168c0-16.6 13.4-30 30-30s30 13.4 30 30" fill="none" stroke="#c9422c"
+                stroke-width="9" stroke-linecap="round" opacity=".55"/>
+          <rect x="140" y="188" width="120" height="9" rx="4.5" fill="#d8c7ad"/>
+          <rect x="158" y="208" width="84" height="9" rx="4.5" fill="#e2d4be"/>
+          <rect x="146" y="228" width="108" height="9" rx="4.5" fill="#e2d4be"/>
+        </svg>
+      </div>
+      <div class="entry__body">
+        <h2 class="entry__title">个人主页</h2>
+        <p class="entry__desc">关于我、我的项目、技能与联系方式。</p>
+        <span class="entry__cta">前往主页
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h13M13 6l6 6-6 6"/>
+          </svg>
+        </span>
+      </div>
+    </a>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">联系方式</h2>
-            <p>如果您对我的项目感兴趣，或者有任何问题，欢迎随时联系我。</p>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:your.email@example.com">256000476@nbu.edu.cn</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-github"></i>
-                    <a href="https://github.com/yourusername" target="_blank">github.com/Bin-nbu</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <a href="https://linkedin.com/in/yourusername" target="_blank">V：bin022055</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:+861234567890">+86 134 8608 3712</a>
-                </div>
-            </div>
-        </div>
-    </section>
+  </main>
 
-    <footer>
-        <div class="container">
-            <button id="saveToDesktop" class="btn">一键保存到桌面</button>
-            <p>&copy; 2026 个人网站. 保留所有权利.</p>
-        </div>
-    </footer>
+  <footer>
+    <span>© 2026 蒋栎斌</span>
+    <span><a href="https://github.com/Bin-nbu">GitHub</a></span>
+  </footer>
 
-    <script>
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.backgroundColor = 'rgba(44, 62, 80, 0.95)';
-            } else {
-                header.style.backgroundColor = 'var(--dark-color)';
-            }
-        });
-    </script>
+</div>
 </body>
 </html>
